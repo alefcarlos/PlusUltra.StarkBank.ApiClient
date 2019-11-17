@@ -29,7 +29,7 @@ namespace PlusUltra.StarkBank.ApiClient.MessageHandlers
 
             var token = await authClient.LoginAsync(form);
 
-            request.Headers.Authorization = new AuthenticationHeaderValue(token.AccessToken);
+            request.Headers.TryAddWithoutValidation("Access-Token", token.AccessToken);
 
             return await base.SendAsync(request, cancellationToken);
         }
