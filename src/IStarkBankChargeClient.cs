@@ -6,10 +6,10 @@ namespace PlusUltra.StarkBank.ApiClient
 {
     public interface IStarkBankChargeClient
     {
-        [Post("/charge")]
-        Task<GenerateChargeResponse> GenerateChargeAsync([Body]GenerateChargeRequest request);
+        [Post("/v1/charge")]
+        Task<GenerateChargesResponse> GenerateChargesAsync([Body]GenerateChargesRequest request);
 
-        [Post("/charge/customer")]
-        Task<CreateCustomerResponse> CreateCustomerAsync([Body]CreateCustomerRequest request);
+        [Post("/v1/charge/customer")]
+        Task<CreateCustomersResponse> CreateCustomersAsync([Body]CreateCustomersRequest request);
     }
 }
