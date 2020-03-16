@@ -8,5 +8,8 @@ namespace PlusUltra.StarkBank.ApiClient.ViewModels
         [JsonConverter(typeof(DateFormatConverter), "yyyy-MM-dd")]
         public System.DateTime DueDate { get; set; }
         public string CustomerId { get; set; }
+        public float Fine => 0;
+        public float Interest => 0;
+        public int Overduelimit => 0;
     }
 }
