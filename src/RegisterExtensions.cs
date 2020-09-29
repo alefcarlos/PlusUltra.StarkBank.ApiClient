@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using PlusUltra.ApiClient;
 using PlusUltra.StarkBank.ApiClient.MessageHandlers;
 using PlusUltra.StarkBank.ApiClient.Services;
@@ -12,8 +11,12 @@ namespace PlusUltra.StarkBank.ApiClient
     {
         public static IServiceCollection AddStarkBank(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<StarkBankSettings>(configuration.GetSection(nameof(StarkBankSettings)));
-            var configs = services.BuildServiceProvider().GetRequiredService<IOptions<StarkBankSettings>>().Value;
+            var configs = new StarkBankSettings();
+            var section = configuration.GetSection(nameof(StarkBankSettings));
+            section.Bind(configs);
+
+            services.Configure<StarkBankSettings>(section);
+            
 
             services.AddTransient<StarkBankAuthenticationHeaderHandler>();
 
